@@ -18,7 +18,7 @@ Oppgaven tar utgangspunkt i koden som er vist nederst på siden. Dette er kode s
 <!-- * Når man trykker på "Legg til stolpe", skal det legges til et nytt tall sist i listen (og en ny stolpe lengst til høyre i stolpediagrammet) med verdien som brukeren har skrevet i input-boksen. Dersom brukeren ikke har skrevet en gyldig verdi i input-boksen, skal det gis en feilmelding. -->
 
 * Lag enhetstester av controller-funksjonene! Altså funksjonene for å:
-    * velge stolpe (teste både velge den som er valgt og en annen)
-    * slette en stolpe
-    * endre en stolpe
-    * legge til en stolpe
+    <!-- * velge stolpe (teste både velge den som er valgt og en annen) -->
+    <!-- * slette en stolpe -->
+    <!-- * endre en stolpe
+    * legge til en stolpe -->

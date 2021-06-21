@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Test Suite</title>
+<link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.16.0.css">
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+  <script src="https://code.jquery.com/qunit/qunit-2.16.0.js"></script>
+  <script src="main.js"></script>
+</body>
+
+<script>
+
+function showView(){
+}
+function checkIfChosen(){  
+}
+function throwValueError(){
+
+}
+
+
+
+  // * velge stolpe (teste både velge den som er valgt og en annen)
+
+  QUnit.test('Test om vi kan velge ny stolpe', function(assert) {
+
+      selectedPillar = 3;
+      choosePillar(2);      
+
+      const actual = selectedPillar;
+      const expected = 2; 
+      assert.equal(actual, expected);
+    });
+
+    QUnit.test('Test om vi kan de-selecte en stolpe', function(assert) {
+
+    selectedPillar = 2;
+    choosePillar(2);      
+
+    const actual = selectedPillar;
+    const expected = null; 
+    assert.equal(actual, expected);
+  });
+
+
+  // * slette en stolpe
+
+  QUnit.test('Slette stolpe', function(assert) {
+
+    numbers = [1,2,3];
+    selectedPillar = 3;
+
+    console.log("Numbers før sletting : " + numbers);
+    removePillar();
+    console.log("Numbers etter sletting : " + numbers);
+
+    const actual = numbers.length;
+    const expected = 2;
+
+      assert.equal(actual, expected);
+    });
+
+
+  //  * endre en stolpe
+
+  QUnit.test('Endre stolpe', function(assert) {
+
+    numbers = [1,2,3];
+    // const pillar = { min : 1, max : 10, };
+
+    selectedPillar = 1;
+    inputValue = 5;
+
+    console.log("Numbers før endring : " + numbers);
+    changeValue();
+    console.log("Numbers etter endring : " + numbers);
+
+    const actual = numbers[selectedPillar-1];
+    const expected = inputValue;
+      assert.equal(actual, expected);
+    });
+
+//     function addPillar()
+// {
+//     if (inputValue == null) return;
+
+//     if (inRange(inputValue, pillar.min, pillar.max))
+//         numbers.push(inputValue);
+//     else
+//         throwValueError();
+
+//     showView();
+// }
+  //   * legge til en stolpe
+
+  QUnit.test('Legge til stolpe', function(assert) {
+
+    numbers = [1,2,3];
+    inputValue = 5;
+    let len = 3;
+    
+    addPillar();
+
+    const actual = numbers.length;
+    const expected = len+1;
+      assert.equal(actual, expected);
+    });
+</script>

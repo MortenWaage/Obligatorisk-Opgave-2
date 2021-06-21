@@ -1,5 +1,7 @@
 // hjelpevariable for både view og controller
 var contentDiv = document.getElementById('content');
+
+
 // model
 let numbers = [7, 3, 1, 5, 8];
 let chosenBar; // Variabel for hvilken stolpe som er valgt
@@ -9,23 +11,14 @@ var status = "disabled";
 
 const pillar = { min : 1, max : 10, };
 const viewDim = { width : 80, height : 80 };
-// view
-
-showView();
 
 
 
-function calcColor(min, max, val) {
-    var minHue = 240, maxHue = 0;
-    var curPercent = (val - min) / (max - min);
-    var colString = "hsl(" + ((curPercent * (maxHue - minHue)) + minHue) + ",100%,50%)";
-    return colString;
-}
-
-// controller (ingenting her ennå)
+// controller
 
 function choosePillar(id) 
 {   
+    console.log(id, " id inn i funksjon")
     if (selectedPillar == id) selectedPillar = null;
     else selectedPillar = id;
 
@@ -88,31 +81,11 @@ function inRange(val, min, max)
 /*-------------------------*
  *          VIEW           *
  *-------------------------*/
-
-function showView() {       
-
-    let svgInnerHtml = '';
-    for (let i = 0; i < numbers.length; i++) {
-        svgInnerHtml += createBar(numbers[i], i + 1);
-    }
-    contentDiv.innerHTML = `
-        <svg id="chart" width="500" viewBox="0 0 ${viewDim.width} ${viewDim.height}">
-            ${svgInnerHtml}
-        </svg><br/>
-        Valgt stolpe: <i>${currentPillar()}</i> 
-        <br />
-        Verdi:
-        <input type="number" min="1" max="10" value="${inputValue}" oninput="inputValue = this.value" />
-        <button onclick="addPillar()">Legg til stolpe</button>
-        <button ${status} onclick="changeValue()">Endre valgt stolpe</button><br />
-        <button ${status} onclick="removePillar()">Fjerne valgt stolpe</button>
-        `;
-}
  
 function createBar(number, barNo) {
 
     let borderWidth;
-    barNo == selectedPillar ? borderWidth = "1px" : swidth = "0px";
+    barNo == selectedPillar ? borderWidth = "1px" : borderWidth = "0px";
 
     const spacing = 2;
     const width = Math.max(1 ,(viewDim.width - spacing * numbers.length-1) / numbers.length-1);
@@ -127,4 +100,30 @@ function createBar(number, barNo) {
                         x="${x}" y="${y}" fill="${color}" stroke="black" stroke-width=${borderWidth}></rect>`;
 }
 
+function calcColor(min, max, val) {
+    var minHue = 240, maxHue = 0;
+    var curPercent = (val - min) / (max - min);
+    var colString = "hsl(" + ((curPercent * (maxHue - minHue)) + minHue) + ",100%,50%)";
+    return colString;
+}
+
+function showView() {       
+
+    let svgInnerHtml = '';
+    for (let i = 0; i < numbers.length; i++) {
+        svgInnerHtml += createBar(numbers[i], i + 1);
+    }
+    contentDiv.innerHTML = `
+        <svg id="chart" width="500" viewBox="0 0 ${viewDim.width} ${viewDim.height}">
+            ${svgInnerHtml}
+        </svg><br/>
+        Valgt stolpe: <i>${currentPillar()}</i>
+        <br />
+        Verdi:
+        <input type="number" min="1" max="10" value="${inputValue}" oninput="inputValue = this.value" />
+        <button onclick="addPillar()">Legg til stolpe</button>
+        <button ${status} onclick="changeValue()">Endre valgt stolpe</button><br />
+        <button ${status} onclick="removePillar()">Fjerne valgt stolpe</button>
+        `;
+}
 
